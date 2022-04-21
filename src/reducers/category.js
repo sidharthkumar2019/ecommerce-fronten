@@ -53,31 +53,6 @@ export default (state=initialState, action) => {
                 categories: action.payload.categories
             }
             break;
-
-        case categoryConstants.ADD_NEW_CATEGORY_REQUEST:
-            state = {
-                ...state,
-                loading: true
-            }
-            break;
-        case categoryConstants.ADD_NEW_CATEGORY_SUCCESS:
-            const category = action.payload.category;
-            console.log(category);
-
-            let newCategories = buildNewCategories(category.parentID, state.categories, category);
-            console.log(newCategories);
-
-            state = {
-                ...state,
-                categories: newCategories,
-                loading: false
-            }
-            break;
-        case categoryConstants.ADD_NEW_CATEGORY_FAILURE: 
-            state = {
-                ...initialState
-            }
-            break;
     }
 
     return state;
