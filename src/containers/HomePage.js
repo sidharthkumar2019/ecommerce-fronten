@@ -1,6 +1,5 @@
 import React from 'react'
-import { Header } from '../componenets/Header'
-import { MenuHeader } from '../componenets/MenuHeader'
+import { Layout } from '../componenets/Layout'
 
 /**
 * @author
@@ -9,10 +8,9 @@ import { MenuHeader } from '../componenets/MenuHeader'
 
 export const HomePage = (props) => {
   return(
-    <div>
-      <Header />
-      <MenuHeader />
-    </div>
+    <Layout>
+      Home Page
+    </Layout>
    )
 
  }
