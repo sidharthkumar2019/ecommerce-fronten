@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom';
-import { getProductsBySlug } from '../actions/index';
+import React from 'react'
+import { useLocation, useParams } from 'react-router-dom';
+import getParams from '../utils/getParams';
 import { Layout } from '../componenets/Layout'
-import { generatePublicUrl } from '../urlConfig';
 import './ProductListPage.css';
+import { ProductStore } from './ProductStore';
+import { ProductPage } from './ProductPage';
 
 /**
 * @author
@@ -12,57 +12,29 @@ import './ProductListPage.css';
 **/
 
 export const ProductListPage = (props) => {
-  const dispatch = useDispatch();
-  const { slug } = useParams();
-  const product = useSelector(state => state.product);
+  const location = useLocation();
 
-  const priceRange = {
-    under5k: '5000',
-    under10k: '10000',
-    under15k: '15000',
-    under20k: '20000',
-    under30k: '30000'
+  const renderProduct = () => {
+    const params = getParams(location.search);
+
+    let content = null;
+    switch (params.type) {
+      case 'store':
+        content = <ProductStore {...props} />;
+        break;
+      case 'page':
+        content = <ProductPage {...props}/>;
+        break;
+      default:
+        content = null;
+    }
+
+    return content;
   }
-
-  useEffect(() => {
-    dispatch(getProductsBySlug(slug));
-  }, [])
 
   return (
     <Layout>
-      {
-        Object.keys(product.productsByPrice).map((key, index) => {
-          return (
-            <div className='card'>
-              <div className='cardHeader'>
-                <div>{slug} mobile under &#8377; {priceRange[key]}</div>
-                <button>View all</button>
-              </div>
-              <div style={{display: 'flex'}}>
-                {
-                  product.productsByPrice[key].map(product => {
-                    return (
-                      <div className='productContainer'>
-                        <div className='productImageContainer'>
-                          <img src={generatePublicUrl(product.productPictures[0].img)} alt='product image' />
-                        </div>
-                        <div className='productInfo'>
-                          <div style={{ margin: '5px 0' }}>{product.name}</div>
-                          <div>
-                            <span>4.5</span>&nbsp;
-                            <span>1004</span>
-                          </div>
-                          <div className='productPrice'>&#8377; {product.price}</div>
-                        </div>
-                      </div>
-                    );
-                  })
-                }
-              </div>
-            </div>
-          )
-        })
-      }
+      {renderProduct()}
     </Layout>
   )
 

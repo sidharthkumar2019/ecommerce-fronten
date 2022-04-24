@@ -23,8 +23,11 @@ export const MenuHeader = (props) => {
       returnVal.push(
         <li key={category.name}>
           {
-            category.parentID ? <a href={category.slug}>{category.name}</a> :
-            <span>{category.name}</span>
+            category.parentID ? <a
+              href={`${category.slug}?cid=${category._id}&type=${category.type}`}>
+              {category.name}
+            </a> :
+              <span>{category.name}</span>
           }
           {category.children.length > 0 ? (<ul>{renderCategories(category.children)}</ul>) : null}
         </li>
@@ -34,12 +37,12 @@ export const MenuHeader = (props) => {
     return returnVal;
   };
 
-  return(
+  return (
     <div className='menuHeader'>
       <ul>
-        {category.categories.length>0 ? renderCategories(category.categories) : null}
+        {category.categories.length > 0 ? renderCategories(category.categories) : null}
       </ul>
     </div>
-   )
+  )
 
- }
+}
