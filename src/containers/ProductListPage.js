@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import getParams from '../utils/getParams';
 import { Layout } from '../componenets/Layout'
 import './ProductListPage.css';

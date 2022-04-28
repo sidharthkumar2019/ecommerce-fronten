@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import './Header.css'
 import flipkartLogo from '../images/logo/flipkart.png';
 import { IoIosArrowDown, IoIosCart, IoIosSearch } from 'react-icons/io';
@@ -9,7 +9,7 @@ import {
   MaterialButton,
   DropdownMenu
 } from './MaterialUI';
-import { login } from '../actions/auth';
+import { login, signout } from '../actions/auth';
 
 /**
 * @author
@@ -21,9 +21,16 @@ export const Header = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth);
 
   const userLogin = () => {
     dispatch(login({email, password}));
+
+    setLoginModal(false);
+  }
+
+  const logout = () => {
+    dispatch(signout());
   }
 
   return (
@@ -104,8 +111,8 @@ export const Header = (props) => {
         <div className="rightMenu">
           <DropdownMenu
             menu={
-              <a className="loginButton" onClick={() => setLoginModal(true)}>
-                Login
+              <a className="loginButton" onClick={() => auth.authenticate ? null : setLoginModal(true)}>
+                { auth.authenticate ? `${auth.user.firstName} ${auth.user.lastName[0]}.` : 'Login'}
               </a>
             }
             menus={[
@@ -115,12 +122,15 @@ export const Header = (props) => {
               { label: 'Wishlist', href: '', icon: null },
               { label: 'Rewards', href: '', icon: null },
               { label: 'Gift Cards', href: '', icon: null },
+              { label: 'Logout', href: '', icon: null, onClick: logout }
             ]}
             firstMenu={
-              <div className="firstmenu">
+              auth.authenticate ? 
+              null :
+              (<div className="firstmenu">
                 <span>New Customer?</span>
                 <a style={{ color: '#2874f0' }}>Sign Up</a>
-              </div>
+              </div>)
             }
           />
           <DropdownMenu
