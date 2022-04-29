@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom';
 import { getProductsBySlug } from '../actions/index';
+import { Card } from '../componenets/UI/Card';
 import { generatePublicUrl } from '../urlConfig';
 
 /**
@@ -31,11 +32,14 @@ export const ProductStore = (props) => {
             {
                 Object.keys(product.productsByPrice).map((key, index) => {
                     return (
-                        <div className='card'>
-                            <div className='cardHeader'>
-                                <div>{slug} mobile under &#8377; {priceRange[key]}</div>
-                                <button>View all</button>
-                            </div>
+                        <Card
+                            headerLeft = {`${slug} mobile under Rs. ${priceRange[key]}`}
+                            headerRight = {<button>View all</button>}
+                            style={{
+                                width: 'calc(100% - 20px)',
+                                margin: '40px'
+                            }}
+                        >
                             <div style={{ display: 'flex' }}>
                                 {
                                     product.productsByPrice[key].map(product => {
@@ -66,7 +70,7 @@ export const ProductStore = (props) => {
                                     })
                                 }
                             </div>
-                        </div>
+                        </Card>
                     )
                 })
             }

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { getProductDetailsById } from '../actions';
 import { Layout } from '../componenets/Layout';
 import {
@@ -10,7 +10,7 @@ import {
   IoIosFlash
 } from 'react-icons/io';
 import { BiRupee } from 'react-icons/bi';
-import { AiFillThunderbolt } from 'react-icons/ai';
+import {addToCart} from '../actions/cart';
 import { MaterialButton } from '../componenets/MaterialUI';
 import './ProductDetails.css';
 import { generatePublicUrl } from '../urlConfig';
@@ -23,6 +23,7 @@ import { generatePublicUrl } from '../urlConfig';
 
 const ProductDetailsPage = (props) => {
   const params = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
 
@@ -73,8 +74,8 @@ const ProductDetailsPage = (props) => {
                 onClick={() => {
                   const { _id, name, price } = product.productDetails;
                   const img = product.productDetails.productPictures[0].img;
-                  // dispatch(addToCart({ _id, name, price, img }));
-                  // props.history.push(`/cart`);
+                  dispatch(addToCart({ _id, name, price, img }));
+                  navigate('/cart');
                 }}
               />
               <MaterialButton
