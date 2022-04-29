@@ -36,8 +36,8 @@ export const CartPage = (props) => {
         <Layout>
             <div className='cartContainer' style={{ display: 'flex' }}>
                 <Card
-                    leftHeader='My Cart'
-                    rightHeader={<div>Deliver to</div>}
+                    leftheader='My Cart'
+                    rightheader={<div>Deliver to</div>}
                     style={{ width: '-webkit-fill-available' }}
                 >
                     {
@@ -52,7 +52,7 @@ export const CartPage = (props) => {
                     }
                 </Card>
 
-                <Card leftHeader={'Price'} style={{ width: '500px' }}>
+                <Card leftheader={'Price'} style={{ width: '500px' }}>
                     
                 </Card>
             </div>

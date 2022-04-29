@@ -33,8 +33,8 @@ export const ProductStore = (props) => {
                 Object.keys(product.productsByPrice).map((key, index) => {
                     return (
                         <Card
-                            headerLeft = {`${slug} mobile under Rs. ${priceRange[key]}`}
-                            headerRight = {<button>View all</button>}
+                            leftheader = {`${slug} mobile under Rs. ${priceRange[key]}`}
+                            rightheader = {<button>View all</button>}
                             style={{
                                 width: 'calc(100% - 20px)',
                                 margin: '40px'

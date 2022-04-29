@@ -15,10 +15,10 @@ export const Card = (props) => {
         >
             <div className='cardHeader'>
                 {
-                    props.leftHeader && <div>{props.leftHeader}</div>
+                    props.leftheader && <div>{props.leftheader}</div>
                 }
                 {
-                    props.rightHeader && props.rightHeader
+                    props.rightheader && props.rightheader
                 }
             </div>
             {props.children}
