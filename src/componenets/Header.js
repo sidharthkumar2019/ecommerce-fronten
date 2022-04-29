@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './Header.css'
 import flipkartLogo from '../images/logo/flipkart.png';
 import { IoIosArrowDown, IoIosCart, IoIosSearch } from 'react-icons/io';
@@ -24,7 +24,7 @@ export const Header = (props) => {
   const auth = useSelector(state => state.auth);
 
   const userLogin = () => {
-    dispatch(login({email, password}));
+    dispatch(login({ email, password }));
 
     setLoginModal(false);
   }
@@ -60,7 +60,7 @@ export const Header = (props) => {
                 label="Enter Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                // rightElement={<a href="#">Forgot?</a>}
+              // rightElement={<a href="#">Forgot?</a>}
               />
               <MaterialButton
                 title="Login"
@@ -112,7 +112,7 @@ export const Header = (props) => {
           <DropdownMenu
             menu={
               <a className="loginButton" onClick={() => auth.authenticate ? null : setLoginModal(true)}>
-                { auth.authenticate ? `${auth.user.firstName} ${auth.user.lastName[0]}.` : 'Login'}
+                {auth.authenticate ? `${auth.user.firstName} ${auth.user.lastName[0]}.` : 'Login'}
               </a>
             }
             menus={[
@@ -125,12 +125,12 @@ export const Header = (props) => {
               { label: 'Logout', href: '', icon: null, onClick: logout }
             ]}
             firstMenu={
-              auth.authenticate ? 
-              null :
-              (<div className="firstmenu">
-                <span>New Customer?</span>
-                <a style={{ color: '#2874f0' }}>Sign Up</a>
-              </div>)
+              auth.authenticate ?
+                null :
+                (<div className="firstmenu">
+                  <span>New Customer?</span>
+                  <a style={{ color: '#2874f0' }}>Sign Up</a>
+                </div>)
             }
           />
           <DropdownMenu
@@ -149,7 +149,7 @@ export const Header = (props) => {
             ]}
           />
           <div>
-            <a className="cart">
+            <a className="cart" href='/cart' style={{ textDecoration: 'none' }}>
               <IoIosCart />
               <span style={{ margin: '0 10px' }}>Cart</span>
             </a>
