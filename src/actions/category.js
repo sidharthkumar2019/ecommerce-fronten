@@ -16,6 +16,7 @@ export const getAllCategories = () => {
                 payload: { categories: categoryList }
             });
         } else {
+            const {error} = res.data;
             dispatch({
                 type: categoryConstants.GET_ALL_CATEGORIES_FAILURE,
                 payload: { error: res.data.error }

@@ -3,12 +3,14 @@ import categoryReducer from './category';
 import productReducer from './product';
 import authReducer from './auth';
 import cartReducer from './cart';
+import userReducer from './user';
 
 const rootReducer = combineReducers({
     category: categoryReducer,
     product: productReducer,
     auth: authReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    user: userReducer
 });
 
 export default rootReducer;

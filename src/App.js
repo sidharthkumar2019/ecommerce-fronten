@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isUserLoggedIn } from './actions';
 import { updateCart } from './actions/cart';
+import CheckoutPage from './containers/CheckOutPage';
+
 
 function App() {
   const auth = useSelector(state => state.auth);
@@ -27,6 +29,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<HomePage />} />
         <Route path='/cart' element={<CartPage />} />
+        <Route path='/checkout' element={<CheckoutPage />} />
         <Route path='/:slug' element={<ProductListPage />} />
         <Route path='/:productSlug/:productID/p' element={<ProductDetailsPage />} />
       </Routes>

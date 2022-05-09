@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, getCartItems } from '../actions/cart'
+import { useNavigate } from 'react-router-dom'
 import { Layout } from '../componenets/Layout'
 import { Card } from '../componenets/UI/Card'
 import CartItem from './CartItem'
 
 import './CartItem.css'
+import { MaterialButton } from '../componenets/MaterialUI'
 
 /**
 * @author
@@ -17,6 +19,7 @@ export const CartPage = (props) => {
     const auth = useSelector(state => state.auth);
     const [cartItems, setCartItems] = useState(cart.cartItems);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         setCartItems(cart.cartItems);
@@ -56,6 +59,25 @@ export const CartPage = (props) => {
                             />
                         )
                     }
+
+                    <div
+                        style={{
+                            width: '100%',
+                            display: 'flex',
+                            background: '#ffffff',
+                            justifyContent: 'flex-end',
+                            boxShadow: '0 0 10px 10px #eee',
+                            padding: '10px 0',
+                            boxSizing: 'border-box'
+                        }}                        
+                    >
+                        <div style={{width: '250px'}}>
+                            <MaterialButton 
+                                title='Place Order'
+                                onClick={() => navigate('/checkout')}
+                            />
+                        </div>
+                    </div>
                 </Card>
 
                 <Card leftheader={'Price'} style={{ width: '500px' }}>

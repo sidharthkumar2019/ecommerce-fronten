@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './MaterialUI.css';
 
 /**
-* @author Rizwan Khan
+* @author 
 * @function 
 **/
 
@@ -104,9 +104,34 @@ const DropdownMenu = (props) => {
     );
 }
 
+const Anchor = (props) => {
+    return (
+        <button {...props} className="anchorButton">
+            {props.name}
+        </button>
+    );
+};
+
+const Breed = (props) => {
+    return (
+        <div className="breed">
+            <ul>
+                {props.breed &&
+                    props.breed.map((item, index) => (
+                        <li key={index}>
+                            <a href={item.href}>{item.name}</a>
+                            {props.breedIcon}
+                        </li>
+                    ))}
+            </ul>
+        </div>
+    );
+};
+
 export {
     Modal,
     MaterialInput,
     MaterialButton,
-    DropdownMenu
+    DropdownMenu,
+    Anchor
 }
