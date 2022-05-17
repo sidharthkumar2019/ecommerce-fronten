@@ -26,6 +26,7 @@ const Modal = (props) => {
 
 const MaterialInput = (props) => {
     const [focus, setFocus] = useState(false);
+    const [touch, setTouch] = useState(false);
 
     return (
         <div className="materialInput">
@@ -41,17 +42,31 @@ const MaterialInput = (props) => {
                     value={props.value}
                     onChange={props.onChange}
                     onFocus={(e) => {
-                        setFocus(true)
+                        setFocus(true);
+                        setTouch(true);
                     }}
                     onBlur={(e) => {
-                        if (e.target.value === "") {
-                            setFocus(false)
-                        }
+                        if (e.target.value === "")
+                            setFocus(false);
+                        else
+                            setTouch(false);
                     }} />
                 {
                     props.rightElement ? props.rightElement : null
                 }
             </div>
+            {
+                touch && 
+                <div
+                    style={{
+                        fontSize: '10px',
+                        color: 'red',
+                        fontWeight: 500
+                    }}
+                >
+                    {`{props.label} is required.`}
+                </div>
+            }
         </div>
     )
 }
@@ -92,10 +107,16 @@ const DropdownMenu = (props) => {
                 <ul className="headerDropdownMenu">
                     {
                         props.menus && props.menus.map((item, index) =>
-                            <li key={index}><a href={item.href} onClick={(e) => {
-                                e.preventDefault();
-                                item.onClick && item.onClick()
-                            }}>{item.label}</a></li>
+                            <li key={index}>
+                                <a href={item.href}
+                                    onClick={(e) => {
+                                        if (item.onClick) {
+                                            console.log('clicked')
+                                            e.preventDefault();
+                                            item.onClick && item.onClick()
+                                        }
+                                    }}>{item.label}</a>
+                            </li>
                         )
                     }
                 </ul>
@@ -133,5 +154,6 @@ export {
     MaterialInput,
     MaterialButton,
     DropdownMenu,
-    Anchor
+    Anchor,
+    Breed
 }

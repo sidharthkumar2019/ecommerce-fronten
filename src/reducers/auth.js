@@ -39,18 +39,7 @@ export default (state = initialState, action) => {
                 ...initialState
             };
             break;
-        // case authConstants.LOGIN_SUCCESS:
-        //     state = {
-        //         ...initialState
-        //     };
-        //     break;
-        // case authConstants.LOGOUT_FAILURE:
-        //     state = {
-        //         ...state,
-        //         error: action.payload.error,
-        //         loading: false
-        //     };
-        //     break;
+        
     }
 
     return state;

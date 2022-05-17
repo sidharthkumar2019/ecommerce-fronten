@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isUserLoggedIn } from './actions';
 import { updateCart } from './actions/cart';
 import CheckoutPage from './containers/CheckOutPage';
+import { OrderPage } from './containers/OrderPage';
+import { OrderDetailsPage } from './containers/OrderDetails';
 
 
 function App() {
@@ -29,8 +31,10 @@ function App() {
       <Routes>
         <Route exact path='/' element={<HomePage />} />
         <Route path='/cart' element={<CartPage />} />
+        <Route path='/account/orders' element={<OrderPage />} />
         <Route path='/checkout' element={<CheckoutPage />} />
         <Route path='/:slug' element={<ProductListPage />} />
+        <Route path='/order_details/:orderID' element={<OrderDetailsPage />} />
         <Route path='/:productSlug/:productID/p' element={<ProductDetailsPage />} />
       </Routes>
     </div>

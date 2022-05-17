@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addAddress } from "../../actions";
-import { MaterialButton, MaterialInput } from "../../componenets/MaterialUI";
+import { addAddress } from '../../actions/user';
+import { MaterialButton, MaterialInput } from '../../componenets/MaterialUI';
 
 /**
  * @author

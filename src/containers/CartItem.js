@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux'
+import { removeCartItem } from "../actions/cart";
 import { generatePublicUrl } from "../urlConfig";
 import "./CartItem.css";
 
@@ -10,8 +12,13 @@ import "./CartItem.css";
 
 const CartItem = (props) => {
   const [qty, setQty] = useState(props.cartItem.qty);
-
   const { _id, name, price, img } = props.cartItem;
+  const dispatch = useDispatch();
+
+  const remove = () => {
+    console.log(props.cartItem);
+    dispatch(removeCartItem({productID: _id}));
+  }
 
   const onQuantityIncrement = () => {
     setQty(qty + 1);
@@ -53,7 +60,7 @@ const CartItem = (props) => {
         <button className="cartActionBtn">save for later</button>
         <button
           className="cartActionBtn"
-          onClick={() => {}}
+          onClick={() => {remove()}}
         >
           Remove
         </button>

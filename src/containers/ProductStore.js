@@ -14,18 +14,12 @@ export const ProductStore = (props) => {
     const dispatch = useDispatch();
     const { slug } = useParams();
     const product = useSelector(state => state.product);
+    const priceRange = product.priceRange; 
 
     useEffect(() => {
         dispatch(getProductsBySlug(slug));
     }, [])
 
-    const priceRange = {
-        under5k: '5000',
-        under10k: '10000',
-        under15k: '15000',
-        under20k: '20000',
-        under30k: '30000'
-    }
 
     return (
         <>
@@ -33,8 +27,8 @@ export const ProductStore = (props) => {
                 Object.keys(product.productsByPrice).map((key, index) => {
                     return (
                         <Card
-                            leftheader = {`${slug} mobile under Rs. ${priceRange[key]}`}
-                            rightheader = {<button>View all</button>}
+                            headerLeft = {`${slug} mobile under Rs. ${priceRange[key]}`}
+                            headerRight = {<button>View all</button>}
                             style={{
                                 width: 'calc(100% - 20px)',
                                 margin: '40px'

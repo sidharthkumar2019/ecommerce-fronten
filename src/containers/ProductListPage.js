@@ -5,6 +5,7 @@ import { Layout } from '../componenets/Layout'
 import './ProductListPage.css';
 import { ProductStore } from './ProductStore';
 import { ProductPage } from './ProductPage';
+import { ClothingAndAccessories } from './ClothingAndAccessories';
 
 /**
 * @author
@@ -26,7 +27,7 @@ export const ProductListPage = (props) => {
         content = <ProductPage {...props}/>;
         break;
       default:
-        content = null;
+        content = <ClothingAndAccessories {...props} />;
     }
 
     return content;
